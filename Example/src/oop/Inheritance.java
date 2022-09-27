@@ -18,7 +18,13 @@ public class Inheritance {
 		}
 		
 		public void print() {
-			System.out.printf("가로가 %.1f이고 세로가 %.1f인 직사각형의 넓이: %.1f\n", width, height, area());		}
+			System.out.printf("%s의 넓이: %.1f\n", this, area());
+		}
+		
+		@Override
+		public String toString() {
+			return String.format("가로가 %.1f이고 세로가 %.1f인 직사각형", width, height);
+		}
 	}
 
 	/** 정사각형 **/
@@ -28,8 +34,9 @@ public class Inheritance {
 			super(width, width);
 		}
 		
-		public void print() {
-			System.out.printf("한 변이 %.1f인 정사각형의 넓이: %.1f\n", width, area());
+		@Override
+		public String toString() {
+			return String.format("한 변이 %.1f인 정사각형", width);
 		}
 	}
 	

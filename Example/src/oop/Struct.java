@@ -14,12 +14,15 @@ public class Struct {
 		double width;
 	}
 	
-	public static double area(Rectangle rect) {
-		return rect.width * rect.height;
-	}
-	
-	public static double area(Square square) {
-		return square.width * square.width;
+	public static double area(Object obj) {
+		if (obj instanceof Rectangle) {
+			Rectangle rect = (Rectangle)obj;
+			return rect.width * rect.height;
+		} else if(obj instanceof Square) {
+			Square square = (Square)obj;
+			return square.width * square.width;
+		}
+		return 0;
 	}
 	
 	public static void print(Rectangle rect) {
@@ -30,14 +33,22 @@ public class Struct {
 		System.out.printf("한 변이 %f인 정사각형의 넓이: %f", square.width, area(square));
 	}
 	
+	public static void setSize(Rectangle rect, double width, double height) {
+		rect.width = width;
+		rect.height = height;
+	}
+	
+	public static void setWidth(Square square, double width) {
+		square.width = width;
+	}
+	
 	public static void main(String[] args) {
 		Rectangle rect = new Rectangle();
-		rect.width = 2;
-		rect.height = 3;
+		setSize(rect, 2, 3);
 		print(rect);
 		
 		Square square = new Square();
-		square.width = 4;
+		setWidth(square, 4);
 		print(square);
 	}
 }
