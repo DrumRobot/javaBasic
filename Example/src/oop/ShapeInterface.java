@@ -1,9 +1,17 @@
 package oop;
 
-public class Inheritance {
+public class ShapeInterface {
+	
+	interface Shape {
+		double area();
+
+		default void print() {
+			System.out.printf("%s의 넓이: %.1f\n", this, area());
+		}
+	}
 
 	/** 직사각형 **/
-	static class Rectangle {
+	static class Rectangle implements Shape {
 		double width;
 		double height;
 
@@ -16,8 +24,11 @@ public class Inheritance {
 			return width * height;
 		}
 
-		public void print() {
-			System.out.printf("%s의 넓이: %.1f\n", this, area());
+		@Override
+		public int hashCode() {
+			int a = ((Double) width).hashCode();
+			int b = ((Double) height).hashCode();
+			return String.format("%d%d", a, b).hashCode();
 		}
 
 		@Override
@@ -27,16 +38,16 @@ public class Inheritance {
 	}
 
 	/** 정사각형 **/
-	static class Square extends Rectangle {
+	static class Square implements Shape {
+		double width;
 
 		Square(double width) {
-			super(width, width);
+			this.width = width;
 		}
 
 		@Override
-		public void print() {
-			super.print();
-			System.out.printf("%s의 넓이: %.1f\n", super.toString(), area());
+		public double area() {
+			return width * width;
 		}
 
 		@Override
